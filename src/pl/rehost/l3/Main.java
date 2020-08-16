@@ -6,7 +6,20 @@ import java.util.ArrayList;
 public class Main {
 
     static void populateSchool(School school) throws BiedaException {
+        ArrayList<Teacher> teachers = new ArrayList<>();
         Teacher teacher = new Teacher();
+        teacher.setFirstName("Piotr");
+        teacher.setLastName("Duch");
+        try {
+            //nie moglem sie powstrzymac
+            teacher.setWage(1000);
+        } catch (BiedaException e) {
+            System.err.println("Powinno być \"Failed to allocate Teacher\", a jest \"Failed to allocate teacher\"");
+            throw e;
+        }
+        teachers.add(teacher);
+
+        teacher = new Teacher();
         teacher.setFirstName("Anna");
         teacher.setLastName("Firych-Nowacka");
         try {
@@ -15,7 +28,10 @@ public class Main {
             System.err.println("Czemu zarabia tak mało? :(");
             throw e;
         }
-        school.setTeacher(teacher);
+        teachers.add(teacher);
+
+        school.setTeachers(teachers);
+
 
         // yay, javowo
         ArrayList<Pupil> pupils = new ArrayList<>();
@@ -53,12 +69,17 @@ public class Main {
             e.printStackTrace();
             return;
         }
-        printInfo(school.getTeacher());
+        //printInfo(school.getTeachers());
 
         // yay, javowo!
         ArrayList<Pupil> pupils = school.getPupils();
         for (Pupil pupil : pupils) {
             printInfo(pupil);
+        }
+
+        ArrayList<Teacher> teachers = school.getTeachers();
+        for(Teacher teacher : teachers) {
+            printInfo(teacher);
         }
     }
 }
