@@ -11,7 +11,7 @@ public class Main {
         teacher.setFirstName("Piotr");
         teacher.setLastName("Duch");
         try {
-            //nie moglem sie powstrzymac
+            //Nie moglem sie powstrzymac
             teacher.setWage(1000);
         } catch (BiedaException e) {
             System.err.println("Powinno być \"Failed to allocate Teacher\", a jest \"Failed to allocate teacher\"");
